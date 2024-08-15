@@ -1,5 +1,4 @@
 # Components
-
 * Cache
 * Load balancer
 * API gateway
@@ -7,6 +6,7 @@
 * Distribute(Queue)
 * Evaluation (logging, metrics, monitoring)
 
+#### Extras
 * DNS
 * CDN
 * Sharding
@@ -19,4 +19,8 @@
 * 1 day = 10^5 seconds
 * 1 year = 3 x 10^7 seconds
 <img width="819" alt="image" src="https://github.com/user-attachments/assets/6dfa9681-c5e5-463d-920a-f1d628531c0e">
+
+## Basic Architecture
+<img width="1172" alt="image" src="https://github.com/user-attachments/assets/8dcbbe8c-051b-427e-995b-89173a152913">
+
 
