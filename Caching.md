@@ -21,7 +21,7 @@
 ### Cache invalidation: 
 * “Least Recently Used” (or LRU) favours most popular data, and thereby less cache misses.
 * Stale data handling: “Time To Live” (or any other expiry pattern)
-* 
+
 ### Estimation
 * A production level caching machine would be 72G or 144G of RAM (for applications using main memory)
 * Min. number of machine required = 30 TB / 72G which is close to 420 machines.
