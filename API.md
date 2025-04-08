@@ -23,6 +23,8 @@ Both these are built on top of TCP and IP.
 
 WebSockets use a handshake (an initial HTTP request) to establish a persistent, full-duplex TCP connection. Once the connection is established, both the client and server can send data to each other at any time. More complex to set up than SSE. 
 Use Cases: Chat applications, real-time dashboards, collaborative editing tools. 
+Tools: Elastic Load Balancer AWS supports Websockets load balancing. 
+Using a Publish/Subscribe or pub/sub broker is an effective method of horizontally scaling WebSockets.
 
 SSE uses a persistent HTTP connection for one-way data streaming.Then the server can push real-time updates to a client.Can't transmit binary data. 
 Use Cases: Stock tickers, news feeds, game updates. 
