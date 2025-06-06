@@ -4,7 +4,7 @@
 * Generate short alias
 * Redirection
 * Custom URL support
-* Custom Time to Live (TTL)
+* Custom Time to Live (TTL) (default: say 2 years)
 * Delete URLs
 
 OOS:
@@ -12,7 +12,6 @@ OOS:
 * Analytics
 * Login
 * Editing
-
 
 ### NFR
 * Unique URLs, not easily guessable
@@ -22,13 +21,13 @@ OOS:
 * Rate limited usage to prevent abuse
 
 ### Data Model/Core Entities
-URL : alias, originalurl, createdby, time, ttl 
-USER: user metadata
-Database: Since no complex relationships, NoSQL choice would also be easier to scale
+* URL : alias, originalurl, createdby, time, ttl   
+* USER: user metadata  
+* Database: Since no complex relationships, NoSQL choice would also be easier to scale
 
 ### API
-GET getShortUrl(actual_url, custom_alias, ttl, username)
-GET redirect(shorturl)
+* GET getShortUrl(actual_url, custom_alias, ttl, username)  
+* GET access(shorturl) (“HTTP 302 Redirect”)
 
 ### BOE Calculation
 * Read-heavy
@@ -42,8 +41,13 @@ stored URL in the “Location” field of the request. If that key is not presen
 “HTTP 404 Not Found” status or redirect the user back to the homepage.
 
 Custom alias impose limit to url lengths. Check if unique.
-
 DB Partitioning: Hash-Based Partitioning (Consistent Hashing)
+
+TTL: 
+Whenever a user tries to access an expired link, we can delete the link and return an error to the user, purge it then and there.
+Periodic purging service 
+
+Delete URLs: Need not reuse keys as we have plenty.
 
 ### Deepdive
 ##### Create URL 
@@ -60,7 +64,14 @@ Can concurrency cause problems? Allocate a set of pregenerated keys for each ser
 Synchronize(or get a lock on) to ensure duplicate keys are not distributed across servers.
 
 ###### Cache
-Cache storage: 6 (characters per key) * 68.7B (unique keys) = 412 GB. 170GB memory to cache 20% of daily traffic.
+* Cache storage: 6 (characters per key) * 68.7B (unique keys) = 412 GB. 170GB memory to cache 20% of daily traffic. Store TTL data as well (8 bytes for 1 datetime stamp). 2x memory.
+* Least Recently Used eviction strategy
+
+###### Security/Restricted Access
+URL: add private/public access level  
+url x userids : Multicolumn indexing. Column order matters. Url first.
+
+  
 
 
 
