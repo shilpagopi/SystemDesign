@@ -8,17 +8,13 @@
 ## What is a Composite Index?
 A composite index is a single index data structure that stores the values of multiple columns in a specific order. When you create a composite index, the database sorts the data based on the values of the first column, then by the second column within the first column's sorted values, and so on.
 
-Example Syntax (conceptual):
+Example Syntax (conceptual):CREATE INDEX idx_lastname_firstname ON Employees (LastName, FirstName);
 
-SQL
-
-CREATE INDEX idx_lastname_firstname ON Employees (LastName, FirstName);
-In this example, the index idx_lastname_firstname is created on the LastName and FirstName columns. The data in the index would be sorted first by LastName, and then by FirstName for rows with the same LastName.
 
 Why Use Composite Indexes?
 Composite indexes are highly beneficial for queries that filter or sort data based on multiple columns simultaneously. They can significantly improve query performance in several scenarios:
 
- Combined Filters: When your WHERE clause includes conditions on multiple columns that are part of the composite index.
+Combined Filters: When your WHERE clause includes conditions on multiple columns that are part of the composite index.
 
 Example: SELECT * FROM Employees WHERE LastName = 'Smith' AND FirstName = 'John';
 This query can efficiently use the idx_lastname_firstname index because both columns in the WHERE clause are covered by the index, and in the correct order.
