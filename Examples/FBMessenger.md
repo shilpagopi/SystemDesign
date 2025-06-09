@@ -15,7 +15,6 @@ OOS:
 * view any chat (use pagination)
 
 ### NFR
-* Reliability
 * Availability>Consistency
 * Low latency
 * Maintain the sequencing of the messages across devices: Use creation time (time of reception of msg at server) as part of generation of msgid, and sort the msg ids whiel displaying.
@@ -36,7 +35,7 @@ database to store variably sized data, which is also required by our service.
 ### APIs
 * sendMsg(chatid,content,userid)
 * openChat(chatid, userid)
-* LongPolling or Websockets (use routing mechanism probably using redis cache for storing userid:connection object mapping)
+* LongPolling or Websockets (For sticky session, use routing mechanism probably using redis cache for storing userid:connection object mapping)
 * Websockets preferred for tracking active/offline status as well
 
 ### BOE
@@ -57,6 +56,10 @@ database to store variably sized data, which is also required by our service.
 * get latest k msgs in a chat from cache
 * For Push notifications, each user can opt-in from their device (or a web browser) to get notifications whenever there is a new message or event. Each manufacturer maintains a set of servers that handles
 pushing these notifications to the user. To have push notifications in our system, we would need to set up a Notification server, which will take the messages for offline users and send them to the manufacture’s push notification server, which will then send them to the user’s device.
+
+### Deepdives
+* Managing msg delivery using websockets
+* Active status maintaining
 
 
   
