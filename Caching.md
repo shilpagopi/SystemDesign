@@ -2,6 +2,7 @@
 * Storing results of an expensive computation or network calls or database queries or asset fetching,so you don't have to redo it.
 * Generally, caching is used for read-heavy systems (like social media). The 80/20 rule: You want to store 80% of read requests in 20% of storage (or memory). Store popular data.
 * A CDN (content delivery network) is something that's commonly used to deliver cached data.
+* Types of cache: storage cache (eg. CDN) or metadata cache.
 
 ### Features
 * Amount of data : TBs
