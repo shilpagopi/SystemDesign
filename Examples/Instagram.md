@@ -5,8 +5,8 @@
 * Feed
 
 OOS:
-* shortvideos
-* resticted access
+* short videos
+* restricted access
 * analytics
 * authentication
 * searches and hashtags
@@ -20,10 +20,13 @@ OOS:
 
 ### Data Entities
 * user.. metadata
-* postid, postcontenturl, userid, ...
+* postid, postcontenturl, userid, ... (indexed by postid)
 * follower,followee (indexed by followee)
 
 ### BOE
 * Read-heavy 
 * Estimates: 500M total users, with 1M daily active users. 2M new photos every day, 23 new photos every second.
-* 
+
+### Deepdives
+* Feedcreation
+* Media rendering
