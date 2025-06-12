@@ -3,6 +3,7 @@
 ### FR
 * Search textual string among the tweets
 * AND or OR
+* Ranking - based on time (use creationtime in index)
 
 OOS
 * Image/video based search
@@ -10,7 +11,7 @@ OOS
 * UserProfile searches
 * Pagination
 * Pruning older tweets from index
-* 
+* Ranking based on other factors like personal history, popularity, user's graph
 
 ### NFR
 * Low latency (cache)
@@ -19,6 +20,7 @@ OOS
 
 ### Core data entities
 * Tweet (id, contenturl)
+* Search table: words ->tweetids. Use consistent hashing over words. 
 * Hashtag - Tweet mapping
 
 ### APIs
