@@ -21,7 +21,7 @@ OOS:
 
 ### Data Entities
 * user (id indexed, other metdata)
-* videos (video id)
+* videos (video id) - sharding based on video ID (if based on userid, data imbalance)
 
 ### API
 * uploadVideo(content, title, desc, )
@@ -36,8 +36,11 @@ OOS:
  
 ### HLD
 * A successful upload will return HTTP 202 (request accepted) and once the video encoding is completed
-the user is notified through email with a link to access the video.  
+the user is notified through email with a link to access the video.
+* Processing Queue: Each uploaded video will be pushed to a processing queue to be de-queued
+later for encoding, thumbnail generation, and storage.
 
 ### Deepdives
 * video transcoding
-* 
+* video deduplication: during upload: check chunkwise matching using algortihms (e.g., Block Matching, Phase Correlation, etc.) and skip uploading those unless new video is of higher quality
+  
