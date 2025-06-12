@@ -32,4 +32,8 @@
 * Consistency - Eventually consistent?
 * Availability
 
+### Redis
+* Low latency cache (works as a key-value store)
+* Redis 7.4 and later: Supports Hash Field Expiration (HFE) (for automatic expiry of hashes or specific fields after TTL) - used for rate limiting or time series based counting.
+
   
