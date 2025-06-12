@@ -19,4 +19,21 @@ sharding and scaling | (maybe)|Managed NoSQL services like DynamoDB or Azure Mon
 * Document databases: can perform aggregate searches across data, and store in a variety of formats like JSON, XML, and YAML.
 * Columnar databases: Stores information in tables but allows to have denormalized data. The indexing is based on columns rather than rows.
 * Graph databases: to store complicated node and edge relationships, allows for easy graph transversal and modification.
-  
+
+##### Bigtable
+When suggesting Bigtable, make sure to explain why it's a good fit by referencing its core characteristics:
+
+* Massive Scale: Handles terabytes to petabytes of data.
+* High Throughput & Low Latency: Designed for millions of reads/writes per second with millisecond latency.
+* Wide-Column Store: Flexible schema, ideal for semi-structured data with varying columns per row.
+* Sorted Row Keys: Data is lexicographically sorted by row key, enabling efficient range scans. This is crucial for time-series and analytical rangewise queries.
+* Atomic Row-Level Operations: All reads and writes within a single row are atomic.
+* Versions: Can store multiple timestamped versions of data in a single cell.
+* Managed Service: Reduces operational overhead compared to self-managing HBase.
+* HBase API Compatibility: Existing HBase applications can often migrate easily.
+
+When NOT to use Bigtable:
+* Relational Data: Not suitable for highly normalized, relational data that requires complex joins or multi-row transactions. Use a relational database (e.g., Cloud SQL, Spanner) instead.
+* Ad-hoc Queries: While it's fast for row key or range-based queries, it's not a good fit for ad-hoc, complex SQL-like analytical queries across the entire dataset. For that, use a data warehouse like BigQuery.
+* Small Datasets: Overkill and more expensive for small to medium-sized datasets.
+* Complex Transactions: Only supports single-row transactions. Multi-row transactions require application-level coordination.
