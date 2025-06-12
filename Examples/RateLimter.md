@@ -6,8 +6,22 @@
 
 ### NFR
 * Availability >> Consistency
-* Consistency is variable: stricter for credict card transaction limit, but can be relaxed for token limits.
+* Consistent when checking limits
 * Low latency rate limiting verification (not affecting normal user experience)
+
+### BOE:
+* Estimates: Let’s assume ‘UserID’ takes 8 bytes. Let’s also assume a 2 byte ‘Count’, which can count up to 65k, is
+sufficient for our use case. Although epoch time will need 4 bytes, we can choose to store only the
+minute and second part, which can fit into 2 bytes. Hence, we need a total of 12 bytes to store a user’s
+data:
+
+8 + 2 + 2 = 12 bytes
+
+Let’s assume our hash-table has an overhead of 20 bytes for each record. If we need to track one
+million users at any time, the total memory we would need would be 32MB:
+(12 + 20) bytes * 1 million => 32MB
+Easily fit on single server memory wise. But if he handle 10 requests/sec from each of 1M users: 10M QPS will be our bottleneck.
+
 
 ### HLD
 ###### Throttling
@@ -24,3 +38,5 @@ messages a minute, we can let the user send more than 100 messages a minute when
 resources available in the system.
 
 * Fixed window vs Sliding window : Fixed window means user can send k requests at 11:59 and another k at 12:01. unnecessary spikes.
+* Use Redis Cache for low latency lookup: store userid, counts.
+* Redis's inherent single-threaded command execution ensures atomicty
