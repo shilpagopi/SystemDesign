@@ -24,6 +24,11 @@ Easily fit on single server memory wise. But if he handle 10 requests/sec from e
 
 
 ### HLD
+* Use Redis Cache for low latency lookup: store userid, counts. Redis's inherent single-threaded command execution ensures atomicty
+* Fixed window vs Sliding window : Fixed window means user can send k requests at 11:59 and another k at 12:01. unnecessary spikes.
+  For sliding window, user Redis SortedSet to popout stale entries outside current window, then check limits, and insert if check passes, send accept/reject.
+* 
+
 ###### Throttling
 It is the process of controlling the usage of the APIs by customers during a given
 period. Throttling can be defined at the application level and/or API level. When a throttle limit is
@@ -37,6 +42,4 @@ threshold if the system has some resources available. For example, if a user is 
 messages a minute, we can let the user send more than 100 messages a minute when there are free
 resources available in the system.
 
-* Fixed window vs Sliding window : Fixed window means user can send k requests at 11:59 and another k at 12:01. unnecessary spikes.
-* Use Redis Cache for low latency lookup: store userid, counts.
-* Redis's inherent single-threaded command execution ensures atomicty
+
