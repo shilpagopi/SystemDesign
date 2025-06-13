@@ -26,3 +26,6 @@ OOS:
 
 ### BOE
 * ready heavy 1:500
+
+### Deepdives
+* Use QuadTrees as entity locations are mostly unchanging.
