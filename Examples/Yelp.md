@@ -1,7 +1,7 @@
 # Yelp
 
 ### FR
-* users can search for entities (entitytype, location, count)
+* users can search for entities (entitytype, location, count) within searchradius from curr location
 * users can post reviews (text)
 
 ### NFR
@@ -17,12 +17,12 @@ OOS:
 
 ### Core Data Entities
 * users (userid - indexed, metadata)
-* entities (entityid - indexed, entitytype, location - lat, long, ratings)
+* entities (entityid - indexed, entitytype, location - lat, long, ratings) - shard by entitytypes?
 * reviews (reviewid, entityid, reviewcontenturl, reviewtimestamp)
 
 ### APIs
-* search(searchstring, entitytype, location, count)
-* review(entity, )
+* search(currentuserlocation, entitytype, searchradius, count) -> paginated results
+* review(userid, entityid, reviewcontent, timestamp)
 
 ### BOE
 * ready heavy 1:500
