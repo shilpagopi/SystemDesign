@@ -13,8 +13,13 @@ Example Syntax (conceptual):CREATE INDEX idx_lastname_firstname ON Employees (La
 * Order of columns is crucial. Place the column with the highest cardinality (most unique values) first in the index, Columns used in equality conditions (=)
 * Not recommended if merging over ranges of both columns are expected
 
+## Sharding vs. Partitioning
+* Sharding:  across different physical servers. Partition: ordering within each server.
+  <img width="722" alt="image" src="https://github.com/user-attachments/assets/cda184f1-81c9-4d83-a2a6-7869ca13dba7" />
+  Eg. In Kafka, the partition key determines which partition a message will be written to, ensuring message ordering within that partition
+
 ## Sharding
-shard key/partition key:one or more columns in your table that determine how data is distributed across shards  
+shard key:one or more columns in your table that determine how data is distributed
 
 Common Sharding Strategies and Lookup Mechanisms:
 1. Hash-Based Sharding
