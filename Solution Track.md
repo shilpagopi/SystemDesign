@@ -24,3 +24,5 @@ No. | Problem Statement | Deepdives | Remarks
 No. | Problem Statement |Users | Entities
 1| Dropbox |  | 
 
+## Tips
+* For location search: if there are other mulitple filters, go for elastic search and its location support. Else go for postGRES and PostGIS.
