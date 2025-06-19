@@ -21,6 +21,7 @@ No. | Problem Statement | Deepdives | Remarks
 1| Dropbox | * Chunking: Multi-part upload <br> * Sync: Delta sync, fingerprinting, reconciliation| * Client side app <br> * Sync frequency: adaptive polling based on client usage
 2 | BookMyShow / TicketMaster | * Elastic Search with location and other criteria search <br>  * Virtual waiting queue (kafka queue or a redis sortedset based on incoming timestamp) for selected events to handle high surge. | Caches for quick event detail lookups and searches. <br> SSE Connection to continuously update reserved statusis in ticket layout page|
 3 | Uber | * Location - Redis Geohashing <br> * Consistent Ride matching - Use distributed lock for maintaining reserved state, attempt one driver at a time (say for 10s) | High surges - Queue |
+4| Twitter | * Newsfeed Fan-out-write and Fan-out read, newsfeed cache <br> * Search: Elastic Search| 
 
 ## BOE Estimates
 No. | Problem Statement |Users | Entities
