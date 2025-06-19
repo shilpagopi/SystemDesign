@@ -33,6 +33,7 @@ For geotile_grid aggregations: A tile-based grid system, conceptually similar to
 * GiST (Generalized Search Tree) is not a single type of index like a B-tree or Hash index, but rather a general-purpose, extensible indexing framework within PostgreSQL. It abstracts the common functionalities of a tree-based index (like balancing, searching, inserting, deleting, and handling concurrency) from the specific logic of how a particular data type is indexed and how queries are performed on it. GiST can be adapted to index many other non-traditional data types, such as:
 Full-text search (tsvector/tsquery), Arrays (e.g., btree_gist for B-tree like behavior on arrays), Range types (e.g., daterange, int4range), Multidimensional cubes (cube extension), Tree-like hierarchies (ltree extension)
 <img width="731" alt="image" src="https://github.com/user-attachments/assets/09dbf28c-ba82-4b2d-88bd-e53820db982f" />
+<img width="669" alt="image" src="https://github.com/user-attachments/assets/fbbd6a70-f824-4375-a956-bc1b66dd91e4" />
 
 ##### Bigtable
 When suggesting Bigtable, make sure to explain why it's a good fit by referencing its core characteristics:
