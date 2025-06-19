@@ -8,8 +8,10 @@
   * NFR: Performance (optimize for user facing sync requests), partition tolerance, Availability, Consistency, Security (eg. running low trust user submitted code in isolation)
 * Scale: Read and write, QPS and Data storage
 * Design: Microservices
+  
 ## For Product Design
 <img width="1117" alt="image" src="https://github.com/user-attachments/assets/3cbfa577-296a-4829-be25-a40d36c779fb" />
+
 ## For Infrastructure Design
 <img width="1572" alt="image" src="https://github.com/user-attachments/assets/f0c24130-1ab5-488e-982b-66479883b951" />
 
