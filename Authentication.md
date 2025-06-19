@@ -18,3 +18,7 @@
 * "Secure" flag on a cookie tells the browser only to include it in HTTPS requests, keeping it out of unencrypted traffic.
 * “HttpOnly” flag: don't allow access to the cookie through JavaScript, frontend code won't have direct access.
 * "SameSite" flag: manage sending requests that originate from a different site, to help prevent cross-site request forgery (CSRF) attacks.
+
+###### How to pass userid in API requests?
+Send it in a header as JWT authentication session token (If you put it in the body, anybody could misuse it)
+
