@@ -30,5 +30,18 @@ To estimate the frequency of events in a stream of data
 ##### How it Works:
 <img width="738" alt="image" src="https://github.com/user-attachments/assets/aa634099-7fe1-4a58-a88b-305d4b7d0098" />
 
+<img width="738" alt="image" src="https://github.com/user-attachments/assets/e0c85bb6-bbbb-4cbd-994d-55337568abb6" />
+
+###### Key Characteristics and Trade-offs:
+Adv: Space-Efficient, Fast Updates and Queries, Probabilistic Guarantees, Handles Data Streams: 
+Disadvantages: Nonexact results, Overestimation: never underestimates, No Deletions: Standard Count-Min Sketch does not support decrements or deletions of items. (There are variations like the "Count-Min Sketch with Conservative Updates" that address this partially).
+
+###### Common Use Cases:
+Network Traffic Analysis: Estimating the frequency of IP addresses, ports, or protocols.
+Trending Topics/Hashtags: Identifying popular topics on social media.
+Heavy Hitters Detection: Finding elements that appear very frequently (often combined with other techniques).
+Database Query Optimization: Estimating the selectivity of predicates.
+Botnet Detection: Identifying malicious IP addresses with unusual activity patterns.
+
 
   
