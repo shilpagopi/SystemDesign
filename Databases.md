@@ -1,7 +1,7 @@
 # Databases
 ~ Decision parameters: Structured data? Consistency? Read/Write heavy?
 
-##### SQL vs. NoSQL
+## SQL vs. NoSQL
 Param|SQL|NoSQL|
 --|--|--
 Consistency|high-consistency|eventual consistency
@@ -14,16 +14,21 @@ Latency|larger to ensure consistency via locking mechanisms|
 Underlying Mechanism| B-Trees, used in SQL DBs, are slower to write into. In SQL databases data is stored in pages, each page is traditionally 4 KB in size and maps onto a specific sector of hard drive space. Once a page becomes too large, this page is repartitioned to point to new children pages and the values get sorted into them. SSD has to erase and rewrite - taking time.|Mostly operates with the underlying data structure of a Log-structured merge tree (LSMT) and SS-tables (read more).
 sharding and scaling | (maybe)|Managed NoSQL services like DynamoDB or Azure MongoDB provide them
   
-##### Types of NoSQL databases
+## Types of NoSQL databases
 * Key Value: these are the most popular type opaque to the content. scalable by sharding of data, by default is eventually consistent
 * Document databases: can perform aggregate searches across data, and store in a variety of formats like JSON, XML, and YAML.
 * Columnar databases: Stores information in tables but allows to have denormalized data. The indexing is based on columns rather than rows.
 * Graph databases: to store complicated node and edge relationships, allows for easy graph transversal and modification.
 
-##### Elastic Search
+## Elastic Search
 Elastic search is like a document store for efificient searches. Use CDC (change stream consumed by worker) to maintain consistency between actual primary database and elastic search. (Not preferred for joins, use denormalize data if atmost necessary)
 
-##### DBs for Location Search
+#### Elastic Search supports Location Search
+For geo_point and geo_shape fields (for efficient queries like geo_distance, geo_bounding_box, geo_shape): Elasticsearch primarily uses BKD trees.
+For geohash_grid aggregations and some historical context: Geohashes (which are a form of space-filling curve with a quadtree-like hierarchical structure) are used.
+For geotile_grid aggregations: A tile-based grid system, conceptually similar to a quadtree, is used.
+
+## DBs for Location Search
 * POSTGIS - open-source spatial database extender for PostgreSQL. Supported under the hood by GiST indexes
 * GiST (Generalized Search Tree) is not a single type of index like a B-tree or Hash index, but rather a general-purpose, extensible indexing framework within PostgreSQL. It abstracts the common functionalities of a tree-based index (like balancing, searching, inserting, deleting, and handling concurrency) from the specific logic of how a particular data type is indexed and how queries are performed on it. GiST can be adapted to index many other non-traditional data types, such as:
 Full-text search (tsvector/tsquery), Arrays (e.g., btree_gist for B-tree like behavior on arrays), Range types (e.g., daterange, int4range), Multidimensional cubes (cube extension), Tree-like hierarchies (ltree extension)
