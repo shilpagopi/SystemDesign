@@ -17,7 +17,7 @@
 
 ## Deepdive CheatSheet
 No. | Problem Statement | Deepdives | Remarks
---|--|--|
+--|--|--|--
 1| Dropbox | Chunking: Multi-part upload  Sync: Delta sync, fingerprinting, reconciliation| Client side app, Sync frequency: adaptive polling based on client usage
 
 ## BOE Estimates
