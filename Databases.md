@@ -21,7 +21,7 @@ sharding and scaling | (maybe)|Managed NoSQL services like DynamoDB or Azure Mon
 * Graph databases: to store complicated node and edge relationships, allows for easy graph transversal and modification.
 
 ## Elastic Search
-Elastic search is like a document store for efificient searches. Use CDC (change stream consumed by worker) to maintain consistency between actual primary database and elastic search. (Not preferred for joins, use denormalize data if atmost necessary)
+Elastic search is like a document store for efificient searches. Use CDC(Change Data Capture) (change stream consumed by worker) to maintain consistency between actual primary database and elastic search. (Not preferred for joins, use denormalize data if atmost necessary)
 
 #### Elastic Search supports Location Search
 For geo_point and geo_shape fields (for efficient queries like geo_distance, geo_bounding_box, geo_shape): Elasticsearch primarily uses BKD trees.
