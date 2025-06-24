@@ -28,6 +28,7 @@ OOS:
 * Chat-Participant table(chatid(indexed),participantid,created,lastused..) - composite key (chatid, participantid), and GSI for participantid
 * Chat table - with chat metadata
 * Message table (chatid,msgid(secondary index?),contenturl,author,time..)
+* Outbox (userID,messageID,timestamp) - delete on getting acknowldgement from user
   
 For supporting high rates of small writes, and insequence reads, prefer a a wide-column database solution like HBase. HBase is
 a column-oriented key-value NoSQL database that can store multiple values against one key into
@@ -67,9 +68,14 @@ pushing these notifications to the user. To have push notifications in our syste
 ### Deepdives
 * Managing msg delivery using websockets
 * Active status maintaining
+* Replace userId with clientId if needed to handle clientId
 
 ### Diagrams
-![Uploading image.png…]()
+<img width="1657" alt="image" src="https://github.com/user-attachments/assets/74d9f397-24ed-4b39-8429-23155a113de3" />
+
+### Followups
+* Replace userId with clientId if needed to handle clientId
+
 
 
 
