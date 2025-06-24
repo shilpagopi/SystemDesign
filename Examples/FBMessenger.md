@@ -2,10 +2,9 @@
 ### FR
 * send a chat (group?) message
 * open a chatview
-* receive chat msg
+* send/receive chat msg (all media)
 * receive notifications if offline
 * track online/offline status
-* receive acknowledgement or delivered receipts
 
 OOS:
 * permissions - (group memebr, blocked member, etc.)
@@ -13,16 +12,22 @@ OOS:
 * Disappearing msg or One-time-view media
 * Read receipts/blue ticks
 * view any chat (use pagination)
+* receive acknowledgement or delivered receipts
+* audio/video calling
+* access contacts
+* spam detection
 
 ### NFR
 * Availability>Consistency
-* Low latency
+* Low latency<500ms
+* Reliability - messages are durable
 * Maintain the sequencing of the messages across devices: Use creation time (time of reception of msg at server) as part of generation of msgid, and sort the msg ids whiel displaying.
   
 ### Data Entities
-* user metadata (userid(index),email, useractive status, last_active..)
-* chat table(chatid(indexed),participantid,created,lastused..)
-* chat table (chatid,msgid(secondary index?),contenturl,author,time..)
+* User metadata (userid(index),email, useractive status, last_active..)
+* Chat-Participant table(chatid(indexed),participantid,created,lastused..) - composite key (chatid, participantid), and GSI for participantid
+* Chat table - with chat metadata
+* Message table (chatid,msgid(secondary index?),contenturl,author,time..)
   
 For supporting high rates of small writes, and insequence reads, prefer a a wide-column database solution like HBase. HBase is
 a column-oriented key-value NoSQL database that can store multiple values against one key into
@@ -46,7 +51,9 @@ database to store variably sized data, which is also required by our service.
 * Server capacity estimation: chat servers count? For 500 million connections, assuming a modern server can handle 50K concurrent connections at any time, we would need 10K such servers.
 
 ### HLD
+* use layer 4 load balancer which will make fixed TCP connections to each client device and webserver. Almost like a transparent node. because webservers are not stateless hee.
 * sendMsg -> sends to chatserver, receives acknowledgement, msg relayed to other chat participants, write to db (no need to wait for completing this, implement retries for writing to db)
+* create chatgroups -> update chat and chatParticipant tables
 * Whenever a client starts the app:
   * send all notifications immediately
   * and stays online for say 3 sec:
@@ -60,6 +67,10 @@ pushing these notifications to the user. To have push notifications in our syste
 ### Deepdives
 * Managing msg delivery using websockets
 * Active status maintaining
+
+### Diagrams
+![Uploading image.png…]()
+
 
 
   
