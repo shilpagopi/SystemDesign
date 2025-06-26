@@ -22,12 +22,28 @@ No. | Problem Statement | Deepdives | Remarks
 2 | BookMyShow / TicketMaster | * Elastic Search with location and other criteria search<br> * Distributed Lock for temp reserved seats <br>  * Virtual waiting queue (kafka queue or a redis sortedset based on incoming timestamp) for selected events to handle high surge. | Caches for quick event detail lookups and searches. <br> SSE Connection to continuously update reserved statusis in ticket layout page|
 3 | Uber | * Location - Redis Geohashing <br> * Consistent Ride matching - Use distributed lock for maintaining reserved state, attempt one driver at a time (say for 10s) | High surges - Queue |
 4| Twitter | * Newsfeed Fan-out-write and Fan-out read, newsfeed cache <br> * Search: Elastic Search| PostID+EpochTime (For 50 years, 86400 sec/day * 365 (days a year) * 50 (years) => 1.6 billion seconds We would need 31 bits to store this number.)
-5|Ad Click Aggregator|* Apache Flink - for realtime stream data aggregation <br> * OLAP databases for analytical processing|* ad impression ids instead of Ad ids to handle repetition and prevent user abuse <br> * Reconciliation module based on Apache Spark Map Reduce<br> * checkpointing <br> * queues with retention
-6| Whatsapp | * Websocket connections * Online/Offline status 
+5|Ad Click Aggregator|* Apache Flink - for realtime stream data aggregation from queues <br> * OLAP databases for analytical processing|* ad impression ids instead of Ad ids to handle repetition and prevent user abuse <br> * Reconciliation module based on Apache Spark Map Reduce<br> * checkpointing <br> * queues with retention
+6| Whatsapp | * Websocket connections * Online/Offline status | Cleanup job on undelivered messages|
+7| Instagram or Twitter | * Photo ID creation with timestamp * Hybrid: Fan-out on read (for celebrity accounts), Fan-out on write * Search: Elastic search| Follow - GSI creation|
+8| TinyURL/PasteBin | * Unique ID Generation (MD5 (128bit), SHA (256bit), Key Generation Service) base 64 encoding 6letter~68B | * Support custom alias and TTL <br> * Cache |
+9| Twitter Search | * Likewise or Time wise search: maintain two indices *  Tokenization | * likes aggregator - write only if likes change by log to the base 2 <br> * Move cold indices to blob storage |
+10| Uber | * Location update/search: Use Redis and its Geohashing <br> * Ride matching consistency: Use distributed lock (Dynamo DB) of drivers in "reserved" status. | Optimize for updating live cab locations on driverclient side|
+11| Yelp | PostGREs with GIS (tree structure for not dynamic location) (Elastic Search maybe an overkill)| * Use row-wise locking for avg ratings, numRatings columns OR Optimistic concurrency control (check avgrating, and numratings column versions at the beginning and end of the transaction), else rollback and retry. <br> * Use <userid,reviewid> composite key to prevent users from reviewing multiple times. |
+
+To Add: 
+Bidding
+TypeAhead
+TopK
+Youtube
+Tinder
 
 ## BOE Estimates
 No. | Problem Statement |Users | Entities
 1| Dropbox |  | 
+
+## Location Search 
+<img width="748" alt="image" src="https://github.com/user-attachments/assets/c550defa-dfff-443e-9d32-e3ecfd345799" />
+
 
 ## Tips
 * For location search: if there are other mulitple filters, go for elastic search and its location support. Else go for postGRES and PostGIS.
