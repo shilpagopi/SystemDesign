@@ -1,5 +1,14 @@
 # Back_of_the_Envelope
-##### In-Memory (RAM) Capacities
+
+## Back-of-the-envelope Calculation
+* Estimate QPS (queries per second),DAU (daily active users) and storage requirements:  \
+* Peek QPS = 2 * QPS  \
+* 1 Char = 1 byte, 1 Integer = 4 bytes, 1 Float = 4 bytes
+* 1 day = 10^5 seconds
+* 1 year = 3 x 10^7 seconds
+<img width="819" alt="image" src="https://github.com/user-attachments/assets/6dfa9681-c5e5-463d-920a-f1d628531c0e">
+
+## In-Memory (RAM) Capacities
 
 Typical Ranges for a Single Modern Server:
 * Entry-Level/General Purpose: **64GB** to 128GB
@@ -8,7 +17,7 @@ Typical Ranges for a Single Modern Server:
 
 10,000connections/server
 
-##### Disk Storage
+## Disk Storage
 * HDD (Hard Disk Drive): Much larger capacities, lower cost per GB. Slower I/O and higher latency than SSDs. Individual Server Disk: **200TB**
   If using servers with, say, 16 x 16TB HDDs (16TB is a common enterprise HDD size), that's 16×16TB=256TB raw capacity per server. With RAID 6 (e.g., 2-disk parity, or roughly 80% usable), that's about 200TB usable per server.
 * SDD (solid State Drive) :
