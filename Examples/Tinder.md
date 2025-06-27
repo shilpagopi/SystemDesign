@@ -27,7 +27,7 @@ OOS:
 
 ### Deepdives
 * Swipe Matching Consistency - Redis Cache (Distributed Cache)
-* Location - PostGRES with postGIS or Elastic Search
+* Location - Real-time Locations: Redis Geo (PostGRES with postGIS or Elastic Search)
 * Candidate Feed (Cache)
 * For non-repeating profiles, either search db and filter out. Or use a bloomfilter (to filter out if some profile is definitely not in the set of seen profiles).
 
