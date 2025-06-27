@@ -50,3 +50,4 @@ No. | Problem Statement |Users | Entities
 * PostGRES can maybe handle 5k transactions/sec (say max upto 10k)
 * Redis and Kafka can handle a 100k-1M Transactions
 * Redis supports atomic operations and is single threaded
+* PostGres supports rowlevel atomicity, can be used if write throuput is <5-10k per sec.
