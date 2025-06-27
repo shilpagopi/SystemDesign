@@ -47,5 +47,5 @@ No. | Problem Statement |Users | Entities
 
 ## Tips
 * For location search: if there are other mulitple filters, go for elastic search and its location support. Else go for postGRES and PostGIS.
-* PostGRES can maybe handle 2-4k transactions/sec
+* PostGRES can maybe handle 5k transactions/sec (say max upto 10k)
 * Redis and Kafka can handle a 100k-1M Transactions
