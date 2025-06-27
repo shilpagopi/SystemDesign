@@ -29,13 +29,14 @@ No. | Problem Statement | Deepdives | Remarks
 9| Twitter Search | * Likewise or Time wise search: maintain two indices *  Tokenization | * likes aggregator - write only if likes change by log to the base 2 <br> * Move cold indices to blob storage |
 10| Uber | * Location update/search: Use Redis and its Geohashing <br> * Ride matching consistency: Use distributed lock (Dynamo DB) of drivers in "reserved" status. | Optimize for updating live cab locations on driverclient side|
 11| Yelp | PostGREs with GIS (tree structure for not dynamic location) (Elastic Search maybe an overkill)| * Use row-wise locking for avg ratings, numRatings columns OR Optimistic concurrency control (check avgrating, and numratings column versions at the beginning and end of the transaction), else rollback and retry. <br> * Use <userid,reviewid> composite key to prevent users from reviewing multiple times. |
+12 | Tinder |  * Swipe Matching Consistency - Redis Cache (Distributed Cache) <br> * Location - PostGRES with postGIS or Elastic Search <br> * Candidate Feed (Cache)
+| For non-repeating profiles, either search db and filter out. Or use a bloomfilter (to filter out if some profile is definitely not in the set of seen profiles).
 
 To Add: 
 Bidding
 TypeAhead
 TopK
 Youtube
-Tinder
 
 ## BOE Estimates
 No. | Problem Statement |Users | Entities
